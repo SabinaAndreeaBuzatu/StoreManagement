@@ -21,14 +21,14 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/createUser")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO user) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO user) {
         UserDTO savedUser = userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'OPERATOR')")
     @PostMapping("/createOperator")
-    public ResponseEntity<UserDTO> createOperator(@RequestBody UserDTO user) {
+    public ResponseEntity<UserDTO> createOperator(@RequestBody @Valid UserDTO user) {
         UserDTO savedUser = userService.saveOperator(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
@@ -48,7 +48,7 @@ public class UserController {
     @PutMapping("/{email}")
     @PreAuthorize("hasRole('ADMIN') or (#email == authentication.name)")
     public ResponseEntity<UserDTO> updateUser(@PathVariable String email,
-                                              @RequestBody UserDTO updatedUserDTO) {
+                                              @RequestBody @Valid UserDTO updatedUserDTO) {
         UserDTO updatedUser = userService.updateUser(email, updatedUserDTO);
         return ResponseEntity.ok(updatedUser);
 
