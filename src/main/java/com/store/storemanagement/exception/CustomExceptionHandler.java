@@ -33,4 +33,12 @@ public class CustomExceptionHandler {
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleProductNotFoundException(ProductNotFoundException illegalArgumentException) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error", illegalArgumentException.getMessage());
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
 }
