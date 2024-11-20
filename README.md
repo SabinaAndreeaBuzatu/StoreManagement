@@ -1,3 +1,4 @@
+# Store Management Application
 ## Overview
 This is a **Store Management** system built using **Spring Boot**, designed to handle different aspects of an online store, including **product management**, **order management**, **user management**, **exception handling** and **logging**.
 
