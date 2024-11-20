@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
 
-        if (request.getRequestURI().startsWith("/auth")) {
+        if (request.getRequestURI().startsWith("/auth") || request.getRequestURI().startsWith("/users/createUser")) {
             filterChain.doFilter(request, response);
             return;
         }
